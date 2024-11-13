@@ -1,0 +1,13 @@
+bazel_dep(name = "rules_java", version = "7.11.1")
+bazel_dep(name = "rules_jvm_external", version = "6.5")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        # This line is an example coordinate, you'd copy-paste your actual dependencies here
+        # from your build.gradle or pom.xml file.
+        "commons-cli:commons-cli:1.9.0",
+    ],
+    lock_file = "//:maven_install.json",
+)
+use_repo(maven, "maven")
